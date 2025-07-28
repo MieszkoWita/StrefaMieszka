@@ -2,7 +2,26 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=https://discord.gg/KurQcqEWky">
-    <title>Przekierowanie...</title>
+    <title>Weryfikacja</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
+    <h2>Potwierdź, że nie jesteś robotem</h2>
+    <form id="redirectForm" onsubmit="return validateCaptcha();">
+        <div class="g-recaptcha" data-sitekey="6LcpMZIrAAAAABHATneaQ5NvzaVo5INh2_kaDu7-"></div>
+        <br/>
+        <button type="submit">Przejdź dalej</button>
+    </form>
+
+    <script>
+        function validateCaptcha() {
+            if (grecaptcha.getResponse() === "") {
+                alert("Zaznacz reCAPTCHA, aby kontynuować.");
+                return false;
+            }
+            window.location.href = "https://discord.gg/KurQcqEWky";
+            return false;
+        }
+    </script>
+</body>
+</html>
