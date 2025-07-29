@@ -48,11 +48,12 @@
   <h1>Dołącz do serwera Strefa-Mieszka na Discord!</h1>
   <button id="joinBtn">Dołącz</button>
 
-  <div id="recaptcha-container">
-    <div class="g-recaptcha"
-         data-sitekey="6LcpMZIrAAAAABHATneaQ5NvzaVo5INh2_kaDu7-"
-         data-callback="onCaptchaSuccess"></div>
-  </div>
+  <div id="recaptcha-container" style="text-align: center; margin-top: 30px; display: none;">
+  <div class="g-recaptcha"
+       data-sitekey="6LcpMZIrAAAAABHATneaQ5NvzaVo5INh2_kaDu7-"
+       data-callback="onCaptchaSuccess"
+       style="display: inline-block;"></div>
+</div>
 
   <script>
     const joinBtn = document.getElementById("joinBtn");
