@@ -1,27 +1,72 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Weryfikacja</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <meta charset="UTF-8">
+  <title>Dołącz do Strefa-Mieszka</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    body {
+      background-color: #0a0f1c;
+      color: #00ffff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    }
+
+    #joinBtn {
+      background-color: #33ccff;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: #000;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 40px;
+      box-shadow: 0 0 15px #33ccff;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    #joinBtn:hover {
+      background-color: #00ffff;
+      transform: scale(1.05);
+    }
+
+    #recaptcha-container {
+      margin-top: 30px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <h2>Potwierdź, że nie jesteś robotem</h2>
-    <form id="redirectForm" onsubmit="return validateCaptcha();">
-        <div class="g-recaptcha" data-sitekey="6LcpMZIrAAAAABHATneaQ5NvzaVo5INh2_kaDu7-"></div>
-        <br/>
-        <button type="submit">Przejdź dalej</button>
-    </form>
 
-    <script>
-        function validateCaptcha() {
-            if (grecaptcha.getResponse() === "") {
-                alert("Zaznacz reCAPTCHA, aby kontynuować.");
-                return false;
-            }
-            window.location.href = "https://discord.gg/";
-            return false;
-        }
-    </script>
+  <h1>Dołącz do serwera Strefa-Mieszka na Discord!</h1>
+  <button id="joinBtn">Dołącz</button>
+
+  <div id="recaptcha-container">
+    <div class="g-recaptcha"
+         data-sitekey="6LcpMZIrAAAAABHATneaQ5NvzaVo5INh2_kaDu7-"
+         data-callback="onCaptchaSuccess"></div>
+  </div>
+
+  <script>
+    const joinBtn = document.getElementById("joinBtn");
+    const recaptchaContainer = document.getElementById("recaptcha-container");
+
+    joinBtn.addEventListener("click", () => {
+      recaptchaContainer.style.display = "block";
+      joinBtn.style.display = "none";
+    });
+
+    function onCaptchaSuccess() {
+      window.location.href = "https://discord.gg/NdCuRWDbwa";
+    }
+  </script>
+
 </body>
 </html>
