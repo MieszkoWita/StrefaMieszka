@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Dołącz do Strefy Mieszka</title>
+  <title>Dołącz do Strefa-Mieszka</title>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     body {
@@ -40,6 +40,40 @@
     #recaptcha-container {
       margin-top: 30px;
       display: none;
+      text-align: center;
+    }
+
+    #redirectSection {
+      display: none;
+      margin-top: 40px;
+    }
+
+    .loading-bar {
+      width: 300px;
+      height: 10px;
+      background-color: #000;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .loading-fill {
+      width: 0%;
+      height: 100%;
+      background-color: #00ffff;
+      animation: fillBar 3s linear forwards;
+    }
+
+    @keyframes fillBar {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    #redirectMsg {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: #00ffff;
     }
   </style>
 </head>
@@ -48,16 +82,22 @@
   <h1>Dołącz do serwera Strefa-Mieszka na Discord!</h1>
   <button id="joinBtn">Dołącz</button>
 
-  <div id="recaptcha-container" style="text-align: center; margin-top: 30px; display: none;">
-  <div class="g-recaptcha"
-       data-sitekey="6LcpMZIrAAAAABHATneaQ5NvzaVo5INh2_kaDu7-"
-       data-callback="onCaptchaSuccess"
-       style="display: inline-block;"></div>
-</div>
+  <div id="recaptcha-container">
+    <div class="g-recaptcha"
+         data-sitekey="6LcpMZIrAAAAABHATneaQ5NvzaVo5INh2_kaDu7-"
+         data-callback="onCaptchaSuccess"
+         style="display: inline-block;"></div>
+  </div>
+
+  <div id="redirectSection">
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+    <p id="redirectMsg">Przekierowywanie...</p>
+  </div>
 
   <script>
     const joinBtn = document.getElementById("joinBtn");
     const recaptchaContainer = document.getElementById("recaptcha-container");
+    const redirectSection = document.getElementById("redirectSection");
 
     joinBtn.addEventListener("click", () => {
       recaptchaContainer.style.display = "block";
@@ -65,7 +105,10 @@
     });
 
     function onCaptchaSuccess() {
-      window.location.href = "https://discord.gg/NdCuRWDbwa";
+      redirectSection.style.display = "block";
+      setTimeout(() => {
+        window.location.href = "https://discord.gg/NdCuRWDbwa";
+      }, 3000);
     }
   </script>
 
